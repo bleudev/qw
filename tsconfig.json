@@ -1,0 +1,13 @@
+{
+	"extends": "@sindresorhus/tsconfig",
+	"compilerOptions": {
+		"outDir": "dist",
+		"noEmitOnError": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"skipLibCheck": true
+	},
+	"resolveJsonModule": true,
+	"esModuleInterop": true,
+	"include": ["source"]
+}
