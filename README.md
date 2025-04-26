@@ -4,7 +4,7 @@ QuickWrite (qw) - Vim-like command line editor with a lot of features written on
 
 Key features:
 - FULL customisation. You can customise everything! Any used color! Any hotkey! Just like in Arch
-- Everything important without any additionals, but you can install (or write your own) packages! Editor, tool for show etc.
+- Everything important without anything extra, but you can install (or write your own) packages! Editor, tool for show etc. <!-- tool for show definitely requires replacing but idk with what -->
 
 TODO:
 - [ ] Basic editor
