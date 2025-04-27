@@ -7,7 +7,8 @@ const config = {
     bottom: {
       modes: {
         view: "cyan",
-        input: "green"
+        input: "green",
+        select: "blue"
       }
     }
   },

@@ -112,17 +112,17 @@ export default class Renderer extends React.Component {
           <Text color={config.colors.bottom.modes[this.props.mode]}>{this.props.mode}</Text>,
           <Text color='green'>{this.props.y_pointer}:</Text>,
           <Text color='yellow'>{this.state.debug}</Text>
-        ].flatMap(v => [v, <Text> </Text>])}
+        ].map(v => [v, <Text> </Text>])}
       </Box>
     );
   }
 
   override render() {
-    this.debug(
-      `Lines: ${this.props.data.split('\n').length}`,
-      `Height: ${this.props.height}`,
-      `Pointer: ${this.props.y_pointer}`
-    );
+    // this.debug(
+    //   `Lines: ${this.props.data.split('\n').length}`,
+    //   `Height: ${this.props.height}`,
+    //   `Pointer: ${this.props.y_pointer}`
+    // );
 
     return (
       <Box flexDirection="column">

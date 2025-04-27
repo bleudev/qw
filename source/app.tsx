@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Text, useInput, useStdout } from 'ink';
+import { Box, useInput, useStdout } from 'ink';
 import Renderer from './utils/classes/Renderer.js';
 import config from './utils/config.js'
 import { Modes } from './utils/annotations.js';
@@ -16,10 +16,7 @@ const argv = ( yargs(hideBin(process.argv))
   })
   .parse() as {_: Array<any>})
 
-type Props = {
-};
-
-export default function App(props: Props) {
+export default function App(_: {}) {
   const { stdout } = useStdout();
   const [width, setWidth] = useState(stdout?.columns || 80);
   const [height, setHeight] = useState(stdout?.rows || 24);
@@ -63,7 +60,21 @@ export default function App(props: Props) {
   }, [stdout]);
 
 	useInput((input, key) => {
-		if (mode !== Modes.INPUT)
+    if (
+      key.backspace ||
+      key.delete ||
+      input === '\x7F' ||
+      input === '\b'
+    ) {
+      if (mode === Modes.INPUT && data.split('\n')[y_pointer - 1] === '' && y_pointer > 1) {
+        const lines = data.split('\n');
+        lines.splice(y_pointer - 1, 1); // Удаляем текущую пустую строку
+        setData(lines.join('\n'));
+        setYPointer(v => v - 1); // Перемещаем курсор выше
+      }
+    }
+    
+    if (mode !== Modes.INPUT)
       switch (input) {
         case 'q': // Quit
           process.exit();
@@ -74,6 +85,7 @@ export default function App(props: Props) {
           fs.writeFile(filename, data, err => {
             if (err) console.error(err);
           });
+          break;
       }
 
     if (key.escape && mode === Modes.INPUT) setMode(Modes.VIEW);
@@ -84,7 +96,6 @@ export default function App(props: Props) {
     else if (key.downArrow) setYPointer(old => old + change_YPointer);
   });
 
-  console.log(props)
 	return (
 		<Box flexDirection="column">
       <Renderer height={height} width={width} y_pointer={y_pointer} setYPointer={v => setYPointer(_ => v)} data={data} mode={mode} setData={setData}/>
