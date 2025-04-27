@@ -29,12 +29,13 @@ export default function App(props: Props) {
   const filename = argv._[0];
   const [data, setData] = useState("");
 
-  fs.readFile(filename, 'utf8', (err, data) => {
+  fs.readFile(filename, 'utf8', (err, filedata) => {
     if (err) {
       console.error(err);
       return;
     }
-    setData(data);
+
+    if (!data) setData(filedata);
   });
 
   const [mode, setMode] = useState(Modes.VIEW);

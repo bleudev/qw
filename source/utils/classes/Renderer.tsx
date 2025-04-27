@@ -1,6 +1,6 @@
+import React from 'react';
 import { Box, Text } from 'ink';
 import TextInput from 'ink-text-input';
-import React, { useState } from 'react';
 import config from '../config.js';
 import { Modes } from '../annotations.js';
 
@@ -19,7 +19,7 @@ export default class Renderer extends React.Component {
     height: 0,
     width: 0,
     y_pointer: 1,
-    data: "hello\nworld\nhi\n",
+    data: "",
     setData: (_) => {},
     mode: Modes.VIEW
   };
@@ -32,7 +32,7 @@ export default class Renderer extends React.Component {
   override render() {
     let columns = [];
 
-    for (let i = 1; i < this.props.height; i++) {
+    for (let i = 1; i <= this.props.height - 2; i++) {
       if (i === this.props.y_pointer) {
         columns.push(
           <Box>
