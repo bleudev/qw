@@ -40,7 +40,13 @@ export default function App(props: Props) {
 
   const [mode, setMode] = useState(Modes.VIEW);
 	
-  const setYPointer = (v: ((old: number) => number)) => s_setYPointer(old => Math.max(1, v(old)))
+  const setYPointer = (v: ((old: number) => number)) => {
+    s_setYPointer(old => {
+      const newValue = v(old);
+      const maxLines = data.split('\n').length;
+      return Math.max(1, Math.min(maxLines, newValue));
+    });
+  }
 
   useEffect(() => {
     if (!stdout) return;
@@ -81,7 +87,7 @@ export default function App(props: Props) {
   console.log(props)
 	return (
 		<Box flexDirection="column">
-      <Renderer height={height} width={width} y_pointer={y_pointer} data={data} mode={mode} setData={setData}/>
+      <Renderer height={height} width={width} y_pointer={y_pointer} setYPointer={v => setYPointer(_ => v)} data={data} mode={mode} setData={setData}/>
 		</Box>
 	);
 }
