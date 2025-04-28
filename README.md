@@ -1,22 +1,22 @@
 # qw
 
-QuickWrite (qw) - Vim-like command like editor with a lot of features written on React.js and Ink.
+QuickWrite (qw) - Vim-like command line editor with a lot of features written on React.js and Ink.
 
 Key features:
-- FULLY customisation. You can customise all! Any used color! Any hotkey! How in Arch
-- All important without any additionals, but you can install packages or write your own! Editor, tool for show etc.
+- FULL customisation. You can customise everything! Every color! Every hotkey! Just like in Arch
+- Everything important without anything extra, but you can install (or write your own) packages! Editor, `cat`-like tool with syntax highlighting and scrolling using arrow keys, just like in `man`, etc.
 
 TODO:
 - [ ] Basic editor
-- [ ] Show system (eq. of `cat`, but with syntax highlighing and other things)
+- [ ] File showing system (like `cat`, but with syntax highlighting and other things)
 - [ ] Package system (ex. `qwi py` -> install package with python's syntax highlighting and error checking)
 
-<!-- ## Install
-
+## Install
+Run this command to install qw:
 ```bash
-$ npm install --global qw
+# npm install -g qweditor
 ```
-
+<!--
 ## CLI
 
 ```
