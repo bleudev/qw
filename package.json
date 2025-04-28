@@ -1,8 +1,12 @@
 {
-	"name": "qw",
-	"version": "0.0.0",
+	"name": "qweditor",
+	"version": "0.1.1",
+	"description": "Vim-like terminal text editor",
+	"keywords": ["cli", "editor", "terminal"],
 	"license": "MIT",
-	"bin": "dist/cli.js",
+	"bin": {
+		"qw": "dist/cli.js"
+	},
 	"type": "module",
 	"engines": {
 		"node": ">=16"
@@ -11,11 +15,10 @@
 		"build": "tsc",
 		"dev": "tsc --watch",
 		"test": "prettier --check . && xo && ava",
-		"start": "node dist/cli.js"
+		"start": "node dist/cli.js",
+    	"prepublishOnly": "npm run build"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"dependencies": {
 		"@types/yargs": "^17.0.33",
 		"ink": "^5.0.0",
