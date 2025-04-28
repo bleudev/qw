@@ -11,12 +11,12 @@ TODO:
 - [ ] File showing system (like `cat`, but with syntax highlighting and other things)
 - [ ] Package system (ex. `qwi py` -> install package with python's syntax highlighting and error checking)
 
-<!-- ## Install
-
+## Install
+Run this command to install qw:
 ```bash
-$ npm install --global qw
+# npm install -g qweditor
 ```
-
+<!--
 ## CLI
 
 ```
