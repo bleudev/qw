@@ -38,15 +38,20 @@ export default class Renderer extends React.Component {
     if (this.state.debug !== to_set) this.setState({debug: to_set});
   }
 
-  private renderRow(i: number): React.ReactNode {
+  private num_digits(x: number) {
+    return x.toString().length;
+  }
+
+  private renderRow(i: number, max_num_digits: number): React.ReactNode {
     const lines = this.props.data.split('\n');
     const isActive = i === this.props.y_pointer;
     const lineContent = lines[i-1] || '';
+    const gap = Array(max_num_digits - this.num_digits(i) + 2).join(' ')
 
     if (isActive) {
       return (
         <Box key={i}>
-          <Text color={config.colors.row_num.active}>{`> ${i} `}</Text>
+          <Text color={config.colors.row_num.active}>{`> ${i}${gap}`}</Text>
           <TextInput
             value={lineContent}
             onChange={(v) => {
@@ -72,7 +77,7 @@ export default class Renderer extends React.Component {
 
     return (
       <Text key={i} color={config.colors.row_num.inactive}>
-        {`  ${i} ${lineContent}`}
+        {`  ${i}${gap}${lineContent}`}
       </Text>
     );
   }
@@ -94,7 +99,7 @@ export default class Renderer extends React.Component {
     const rows: React.ReactNode[] = [];
     
     for (let i = start; i <= end; i++) {
-      rows.push(this.renderRow(i));
+      rows.push(this.renderRow(i, this.num_digits(end)));
     }
 
     // Добавляем тильды для пустых строк в конце
