@@ -3,12 +3,12 @@
 QuickWrite (qw) - Vim-like command line editor with a lot of features written on React.js and Ink.
 
 Key features:
-- FULL customisation. You can customise everything! Any used color! Any hotkey! Just like in Arch
-- Everything important without anything extra, but you can install (or write your own) packages! Editor, tool for show etc. <!-- tool for show definitely requires replacing but idk with what -->
+- FULL customisation. You can customise everything! Every color! Every hotkey! Just like in Arch
+- Everything important without anything extra, but you can install (or write your own) packages! Editor, `cat`-like tool with syntax highlighting and scrolling using arrow keys, just like in `man`, etc.
 
 TODO:
 - [ ] Basic editor
-- [ ] File showing system (eq. of `cat`, but with syntax highlighing and other things)
+- [ ] File showing system (like `cat`, but with syntax highlighting and other things)
 - [ ] Package system (ex. `qwi py` -> install package with python's syntax highlighting and error checking)
 
 <!-- ## Install
