@@ -25,17 +25,10 @@ export default class Renderer extends React.Component {
     setData: (_) => {},
     mode: Modes.VIEW
   };
-  override state: Readonly<{debug: string}>;
 
   constructor(props: RendererProps) {
     super(props);
     this.props = props;
-    this.state = {debug: ""};
-  }
-
-  private debug(...msg: any): void {
-    const to_set = msg.join(" ").toString();
-    if (this.state.debug !== to_set) this.setState({debug: to_set});
   }
 
   private num_digits(x: number) {
@@ -110,29 +103,10 @@ export default class Renderer extends React.Component {
     return rows;
   }
 
-  private get bottom_bar() {
-    return (
-      <Box>
-        {[
-          <Text color={config.colors.bottom.modes[this.props.mode]}>{this.props.mode}</Text>,
-          <Text color='green'>{this.props.y_pointer}:</Text>,
-          <Text color='yellow'>{this.state.debug}</Text>
-        ].map(v => [v, <Text> </Text>])}
-      </Box>
-    );
-  }
-
   override render() {
-    // this.debug(
-    //   `Lines: ${this.props.data.split('\n').length}`,
-    //   `Height: ${this.props.height}`,
-    //   `Pointer: ${this.props.y_pointer}`
-    // );
-
     return (
       <Box flexDirection="column">
         {this.getVisibleRows()}
-        {this.bottom_bar}
       </Box>
     );
   }

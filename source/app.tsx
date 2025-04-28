@@ -6,6 +6,8 @@ import { Modes } from './utils/annotations.js';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import fs from 'node:fs';
+import BottomBar from './utils/classes/BottomBar.js';
+import key_switcher from './utils/keyboard.js';
 
 const argv = ( yargs(hideBin(process.argv))
   .option('file', {
@@ -59,46 +61,37 @@ export default function App(_: {}) {
     };
   }, [stdout]);
 
-	useInput((input, key) => {
-    if (
-      key.backspace ||
-      key.delete ||
-      input === '\x7F' ||
-      input === '\b'
-    ) {
-      if (mode === Modes.INPUT && data.split('\n')[y_pointer - 1] === '' && y_pointer > 1) {
-        const lines = data.split('\n');
-        lines.splice(y_pointer - 1, 1); // Удаляем текущую пустую строку
-        setData(lines.join('\n'));
-        setYPointer(v => v - 1); // Перемещаем курсор выше
-      }
-    }
-    
-    if (mode !== Modes.INPUT)
-      switch (input) {
-        case 'q': // Quit
-          process.exit();
-        case 'i': // Enable input mode
-          setMode(Modes.INPUT);
-          break;
-        case 's': // Save file
+  useInput((input, key) => {
+    var change_YPointer = key.shift ? config.shift_strength : 1;
+    var _input = mode === Modes.INPUT;
+    var not_input = mode !== Modes.INPUT;
+    key_switcher({
+      q: () => { if (not_input) process.exit() },
+      i: () => { if (not_input) setMode(Modes.INPUT) },
+      s: () => {
+        if (not_input)
           fs.writeFile(filename, data, err => {
             if (err) console.error(err);
           });
-          break;
-      }
-
-    if (key.escape && mode === Modes.INPUT) setMode(Modes.VIEW);
-
-    let change_YPointer = key.shift ? config.shift_strength : 1;
-
-    if (key.upArrow) setYPointer(old => old - change_YPointer);
-    else if (key.downArrow) setYPointer(old => old + change_YPointer);
+      },
+      backspace: () => {
+        if (_input && data.split('\n')[y_pointer - 1] === '' && y_pointer > 1) {
+          const lines = data.split('\n');
+          lines.splice(y_pointer - 1, 1);
+          setData(lines.join('\n'));
+          setYPointer(v => v - 1);
+        }
+      },
+      escape: () => {if (_input) setMode(Modes.VIEW)},
+      upArrow: () => setYPointer(old => old - change_YPointer),
+      downArrow: () => setYPointer(old => old + change_YPointer)
+    }, input, key)
   });
 
 	return (
 		<Box flexDirection="column">
       <Renderer height={height} width={width} y_pointer={y_pointer} setYPointer={v => setYPointer(_ => v)} data={data} mode={mode} setData={setData}/>
+      <BottomBar mode={mode} y_pointer={y_pointer} filename={filename}/>
 		</Box>
 	);
 }
