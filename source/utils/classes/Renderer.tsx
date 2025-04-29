@@ -44,7 +44,7 @@ export default class Renderer extends React.Component {
     if (isActive) {
       return (
         <Box key={i}>
-          <Text color={config.colors.row_num.active}>{`> ${i}${gap}`}</Text>
+          <Text color={config.colors.editor.row_num.active}>{`> ${i}${gap}`}</Text>
           <TextInput
             value={lineContent}
             onChange={(v) => {
@@ -69,7 +69,7 @@ export default class Renderer extends React.Component {
     }
 
     return (
-      <Text key={i} color={config.colors.row_num.inactive}>
+      <Text key={i} color={config.colors.editor.row_num.inactive}>
         {`  ${i}${gap}${lineContent}`}
       </Text>
     );

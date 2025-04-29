@@ -3,6 +3,7 @@ import React, { FunctionComponent, useState } from "react";
 import { VERSION } from "../info.js";
 import key_switcher from "../keyboard.js";
 import HelpPage from "./HelpPage.js";
+import config from "../config.js";
 
 type MainMenuProps = {
     height: number;
@@ -44,18 +45,30 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({height, width}) => {
       </Box>
       <Box justifyContent="center">
         {!quit && (
-          <Text color="grey"> q - quit </Text>
+          <Text
+            color={config.colors.main.bottom.quit.inactive.fg}
+            backgroundColor={config.colors.main.bottom.quit.inactive.bg}
+          > q - quit </Text>
         )}
         {quit && (
-          <Text color="green"> q - quit </Text>
+          <Text
+            color={config.colors.main.bottom.quit.active.fg}
+            backgroundColor={config.colors.main.bottom.quit.active.bg}
+          > q - quit </Text>
         )}
 
         <Text> </Text>
         {!help && (
-          <Text color='grey'> h - show help </Text>
+          <Text
+            color={config.colors.main.bottom.help.inactive.fg}
+            backgroundColor={config.colors.main.bottom.help.inactive.bg}
+          > h - show help </Text>
         )}
         {help && (
-          <Text backgroundColor='grey'> h - show help </Text>
+          <Text
+            color={config.colors.main.bottom.help.active.fg}
+            backgroundColor={config.colors.main.bottom.help.active.bg}
+          > h - show help </Text>
         )}
       </Box>
     </>
