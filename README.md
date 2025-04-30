@@ -16,6 +16,22 @@ Run this command to install qw:
 ```bash
 # npm install -g qweditor
 ```
+Or use those commands to locally build and install the latest development version:
+```bash
+$ git clone https://github.com/bleudev/qw.git
+$ cd qw
+$ npm i
+$ npm run build
+# npm -g i
+// you can also use this one-liner (requires sudo):
+$ git clone https://github.com/bleudev/qw.git && cd qw && npm i && npm run build && sudo npm -g i
+```
+On Arch-based systems an [AUR package](https://aur.archlinux.org/packages/qw-git), but be aware that this package is unofficial and might break! (use `sudo pacman -R qw` to uninstall it before installing the npm version)
+```bash
+$ git clone https://aur.archlinux.org/qw-git.git && cd qw-git && makepkg -si
+// or (requires yay)
+$ yay -S qw-git
+```
 <!--
 ## CLI
 
