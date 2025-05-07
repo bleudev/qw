@@ -12,23 +12,12 @@ TODO:
 - [ ] Package system (ex. `qwi py` -> install package with python's syntax highlighting and error checking)
 
 ## Install
+
 Run this command to install qw:
 ```bash
 # npm install -g qweditor
 ```
-<!--
-## CLI
 
-```
-$ qw --help
+## Configure
 
-  Usage
-    $ qw
-
-  Options
-    --name  Your name
-
-  Examples
-    $ qw --name=Jane
-    Hello, Jane
-``` -->
+Edit `~/.config/qw/config.yaml` to configure `qw`. If you haven't one, just run `qw` once. `config.yaml` will create automatically with default values.
