@@ -46,28 +46,28 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({height, width}) => {
       <Box justifyContent="center">
         {!quit && (
           <Text
-            color={config.colors.main.bottom.quit.inactive.fg}
-            backgroundColor={config.colors.main.bottom.quit.inactive.bg}
+            color={config().colors.main.bottom.quit.inactive.fg}
+            backgroundColor={config().colors.main.bottom.quit.inactive.bg}
           > q - quit </Text>
         )}
         {quit && (
           <Text
-            color={config.colors.main.bottom.quit.active.fg}
-            backgroundColor={config.colors.main.bottom.quit.active.bg}
+            color={config().colors.main.bottom.quit.active.fg}
+            backgroundColor={config().colors.main.bottom.quit.active.bg}
           > q - quit </Text>
         )}
 
         <Text> </Text>
         {!help && (
           <Text
-            color={config.colors.main.bottom.help.inactive.fg}
-            backgroundColor={config.colors.main.bottom.help.inactive.bg}
+            color={config().colors.main.bottom.help.inactive.fg}
+            backgroundColor={config().colors.main.bottom.help.inactive.bg}
           > h - show help </Text>
         )}
         {help && (
           <Text
-            color={config.colors.main.bottom.help.active.fg}
-            backgroundColor={config.colors.main.bottom.help.active.bg}
+            color={config().colors.main.bottom.help.active.fg}
+            backgroundColor={config().colors.main.bottom.help.active.bg}
           > h - show help </Text>
         )}
       </Box>
