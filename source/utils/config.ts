@@ -10,44 +10,85 @@ function color_scheme(
   return {...default_data, ...data};
 }
 
-const default_config = {
-  colors: {
-    main: {
-      name: {
-        qGrad: ["#00ff00", "#004000"],
-        wGrad: ["#0000ff", "#000060"],
-        verGrad: ["#aaaaaa", "#555555"],
-        descGrad: ["#ff0000", "#800000", "#ff0000"]
-      },
-      bottom: {
-        quit: {
-          inactive: { fg: "grey" },
-          active: { fg: "green" }
-        },
-        help: {
-          inactive: { fg: "grey" },
-          active: { bg: "grey" }
-        }
-      }
-    },
-    editor: {
-      row_num: {
-        active: { fg: "yellow" },
-        inactive: { fg: "white" }
-      },
-      bottom: {
-        modes: {
-          view: { bg: "cyan" },
-          input: { bg: "green" },
-          select: { bg: "blue" }
-        }
-      }
-    }
-  },
-  editor: {
-    shift_strength: 10
-  }
-}
+const default_config = YAML.parse(
+`
+colors:
+  main:
+    name:
+      quick:
+        fg:
+          - "#00ff00"
+          - "#004000"
+      write:
+        fg:
+          - "#0000ff"
+          - "#000060"
+      version:
+        fg: "#aaaaaa"
+      description:
+        fg:
+          - "#ff0000"
+          - "#800000"
+          - "#ff0000"
+        bg:
+          - "#000000"
+          - "#500000"
+          - "#000000"
+    bottom:
+      quit:
+        inactive:
+          fg:
+            - "#bbbbbb"
+            - "#444444"
+            - "#bbbbbb"
+        active:
+          fg:
+            - "#00ff00"
+            - "#009900"
+      help:
+        inactive:
+          fg:
+            - "#bbbbbb"
+            - "#444444"
+            - "#bbbbbb"
+        active:
+          bg:
+            - "#bbbbbb"
+            - "#aaaaaa"
+            - "#bbbbbb"
+  editor:
+    row_num:
+      active:
+        fg:
+          - "#ffff00"
+          - "#999900"
+      inactive:
+        fg:
+          - "#999999"
+          - "#555555"
+      empty:
+        fg: "#333333"
+    bottom:
+      modes:
+        view:
+          bg:
+            - "#00aaff"
+            - "#00ffff"
+        input:
+          bg:
+            - "#00ff00"
+            - "#008822"
+        select:
+          bg:
+            - "#0000ff"
+            - "#220088"
+      rowcol_num:
+        fg: "#00ff00"
+      filename:
+        fg: "#555555"
+editor:
+  shift_strength: 10
+`)
 
 const configPath = (() => {
   var res = homedir()

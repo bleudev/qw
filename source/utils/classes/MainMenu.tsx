@@ -33,41 +33,29 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({height, width}) => {
           {!help && (
             <>
               <Box>
-                <GradientText colors={config().colors.main.name.qGrad}>Quick</GradientText>
-                <GradientText colors={config().colors.main.name.wGrad}>Write</GradientText>
-                <GradientText colors={config().colors.main.name.verGrad}> {VERSION}</GradientText>
+                <GradientText data={config().colors.main.name.quick}>Quick</GradientText>
+                <GradientText data={config().colors.main.name.write}>Write</GradientText>
+                <GradientText data={config().colors.main.name.version}> {VERSION}</GradientText>
               </Box>
-              <GradientText colors={config().colors.main.name.descGrad}>Vim-like terminal text editor</GradientText>
+              <GradientText data={config().colors.main.name.description}>Vim-like terminal text editor</GradientText>
             </>
           )}
           {help && <HelpPage/>}
       </Box>
       <Box justifyContent="center">
         {!quit && (
-          <Text
-            color={config().colors.main.bottom.quit.inactive.fg}
-            backgroundColor={config().colors.main.bottom.quit.inactive.bg}
-          > q - quit </Text>
+          <GradientText data={config().colors.main.bottom.quit.inactive}> q - quit </GradientText>
         )}
         {quit && (
-          <Text
-            color={config().colors.main.bottom.quit.active.fg}
-            backgroundColor={config().colors.main.bottom.quit.active.bg}
-          > q - quit </Text>
+          <GradientText data={config().colors.main.bottom.quit.active}> q - quit </GradientText>
         )}
 
         <Text> </Text>
         {!help && (
-          <Text
-            color={config().colors.main.bottom.help.inactive.fg}
-            backgroundColor={config().colors.main.bottom.help.inactive.bg}
-          > h - show help </Text>
+          <GradientText data={config().colors.main.bottom.help.inactive}> h - show help </GradientText>
         )}
         {help && (
-          <Text
-            color={config().colors.main.bottom.help.active.fg}
-            backgroundColor={config().colors.main.bottom.help.active.bg}
-          > h - show help </Text>
+          <GradientText data={config().colors.main.bottom.help.active}> h - show help </GradientText>
         )}
       </Box>
     </>
