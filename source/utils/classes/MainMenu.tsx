@@ -4,6 +4,7 @@ import { VERSION } from "../info.js";
 import key_switcher from "../keyboard.js";
 import HelpPage from "./HelpPage.js";
 import config from "../config.js";
+import GradientText from "./GradientText.js";
 
 type MainMenuProps = {
     height: number;
@@ -32,13 +33,11 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({height, width}) => {
           {!help && (
             <>
               <Box>
-                <Text color="greenBright">Q</Text>
-                <Text color="green">uick</Text>
-                <Text color="blueBright">W</Text>
-                <Text color="blue">rite</Text>
-                <Text color="grey"> {VERSION}</Text>
+                <GradientText colors={config().colors.main.name.qGrad}>Quick</GradientText>
+                <GradientText colors={config().colors.main.name.wGrad}>Write</GradientText>
+                <GradientText colors={config().colors.main.name.verGrad}> {VERSION}</GradientText>
               </Box>
-              <Text>Vim-like terminal text editor</Text>
+              <GradientText colors={config().colors.main.name.descGrad}>Vim-like terminal text editor</GradientText>
             </>
           )}
           {help && <HelpPage/>}

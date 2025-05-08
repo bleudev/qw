@@ -14,8 +14,10 @@ const default_config = {
   colors: {
     main: {
       name: {
-        qGrad: ["#00ff00", "#000000"],
-        wGrad: ["#0000ff", "#000000"]
+        qGrad: ["#00ff00", "#004000"],
+        wGrad: ["#0000ff", "#000060"],
+        verGrad: ["#aaaaaa", "#555555"],
+        descGrad: ["#ff0000", "#400000"]
       },
       bottom: {
         quit: {
