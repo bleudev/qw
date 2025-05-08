@@ -1,6 +1,6 @@
 import YAML from "yaml";
 import fs from "fs";
-import {homedir} from "os";
+import { homedir, type } from "os";
 import path from "path";
 
 function color_scheme(
@@ -49,7 +49,22 @@ const default_config = {
   }
 }
 
-const configPath = '~/.config/qw/config.yaml'.replace('~', homedir());
+const configPath = (() => {
+  var res = homedir()
+
+  switch (type()) {
+    case 'Linux':
+    case 'Darwin':
+      // Linux or MacOs
+      res += '/.config/qw/config.yaml';
+      break;
+    case 'Windows_NT':
+      // Windows
+      res += '/AppData/Local/qw/config.yaml';
+      break;
+  }
+  return res;
+})();
 
 function ensureConfigExists() {
   if (!fs.existsSync(configPath)) {
