@@ -13,9 +13,23 @@ TODO:
 
 ## Install
 
-Run this command to install qw:
+Available methods:
+- [`npm` (Windows, Linux, MacOs)](#npm)
+- [`AUR` (ArchLinux, Manjaro and others)](#aur)
+
+### `npm`
+
 ```bash
 # npm install -g qweditor
+```
+
+### `AUR`
+
+> [!CAUTION]
+> You can only install unstable developerment version. If you want to install stable version -> use `npm` method or wait for stable `AUR` release (coming in 0.2).
+
+```bash
+yay -S qw-git
 ```
 
 ## Configure
