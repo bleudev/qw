@@ -20,13 +20,13 @@ Available methods:
 ### `npm`
 
 ```bash
-# npm install -g qweditor
+npm install -g qweditor
 ```
 
 ### `AUR`
 
 > [!CAUTION]
-> You can only install unstable developerment version. If you want to install stable version -> use `npm` method or wait for stable `AUR` release (coming in 0.2).
+> You can only install unstable developerment version. If you want to install stable version use `npm` method or wait for stable `AUR` release (coming in 0.2).
 
 ```bash
 yay -S qw-git
