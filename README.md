@@ -12,39 +12,48 @@ TODO:
 - [ ] Package system (ex. `qwi py` -> install package with python's syntax highlighting and error checking)
 
 ## Install
-Run this command to install qw:
+
+Available methods:
+- [`npm` (Windows, Linux, MacOs)](#npm)
+- [`AUR` (ArchLinux, Manjaro and others)](#aur)
+
+### `npm`
+
 ```bash
-# npm install -g qweditor
+npm i -g qweditor
 ```
-Or use those commands to locally build and install the latest development version:
+
+Or use those commands to locally build and install the latest development version (requires `sudo`):
 ```bash
-$ git clone https://github.com/bleudev/qw.git
-$ cd qw
-$ npm i
-$ npm run build
-# npm -g i
-// you can also use this one-liner (requires sudo):
-$ git clone https://github.com/bleudev/qw.git && cd qw && npm i && npm run build && sudo npm -g i
+git clone https://github.com/bleudev/qw.git
+cd qw
+npm i
+npm run build
+sudo npm i -g
 ```
-On Arch-based systems an [AUR package](https://aur.archlinux.org/packages/qw-git), but be aware that this package is unofficial and might break! (use `sudo pacman -R qw` to uninstall it before installing the npm version)
+
+You can also use this one-liner (requires `sudo`):
 ```bash
-$ git clone https://aur.archlinux.org/qw-git.git && cd qw-git && makepkg -si
-// or (requires yay)
-$ yay -S qw-git
+git clone https://github.com/bleudev/qw.git && cd qw && npm i && npm run build && sudo npm i -g
 ```
-<!--
-## CLI
 
+### `AUR`
+
+On Arch-based systems an [AUR package](https://aur.archlinux.org/packages/qw-git),
+but be aware that this package is unofficial and might break! (use `sudo pacman -R qw` to uninstall it before
+installing the npm version)
+
+install with `yay`:
+```bash
+yay -S qw-git
 ```
-$ qw --help
 
-  Usage
-    $ qw
+or you can install without `yay`:
+```bash
+git clone https://aur.archlinux.org/qw-git.git && cd qw-git && makepkg -si
+```
 
-  Options
-    --name  Your name
+## Configure
 
-  Examples
-    $ qw --name=Jane
-    Hello, Jane
-``` -->
+Edit `~/.config/qw/config.yaml` to configure `qw`. If you haven't one, just run `qw` once.
+`config.yaml` will create automatically with default values.

@@ -1,11 +1,16 @@
+import YAML from "yaml";
+import fs from "fs";
+import {homedir} from "os";
+import path from "path";
+
 function color_scheme(
   data: {bg: string, fg: string} | {bg: string} | {fg: string}
 ): {bg: string, fg: string} {
-  var new_data = {bg: '', fg: 'white'};
-  return {...new_data, ...data};
+  var default_data = {bg: '', fg: 'white'};
+  return {...default_data, ...data};
 }
 
-const config = {
+const default_config = {
   colors: {
     main: {
       name: {
@@ -14,29 +19,57 @@ const config = {
       },
       bottom: {
         quit: {
-          inactive: color_scheme({fg: "grey"}),
-          active: color_scheme({fg: "green"})
+          inactive: { fg: "grey" },
+          active: { fg: "green" }
         },
         help: {
-          inactive: color_scheme({fg: "grey"}),
-          active: color_scheme({bg: "grey"})
+          inactive: { fg: "grey" },
+          active: { bg: "grey" }
         }
       }
     },
     editor: {
       row_num: {
-        active: "yellow",
-        inactive: "white"
+        active: { fg: "yellow" },
+        inactive: { fg: "white" }
       },
       bottom: {
         modes: {
-          view: color_scheme({bg: "cyan"}),
-          input: color_scheme({bg: "green"}),
-          select: color_scheme({bg: "blue"})
+          view: { bg: "cyan" },
+          input: { bg: "green" },
+          select: { bg: "blue" }
         }
       }
     }
   },
-  shift_strength: 10
-};
-export default config;
+  editor: {
+    shift_strength: 10
+  }
+}
+
+const configPath = '~/.config/qw/config.yaml'.replace('~', homedir());
+
+function ensureConfigExists() {
+  if (!fs.existsSync(configPath)) {
+      const dir = path.dirname(configPath);
+      if (!fs.existsSync(dir))
+        fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(configPath, YAML.stringify(default_config));
+  }
+}
+
+function processColorObject(obj: any): any {
+  if (typeof obj === 'object' && !Array.isArray(obj)) {
+    if ('fg' in obj || 'bg' in obj) return color_scheme(obj);
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [key, processColorObject(value)])
+    );
+  }
+  return obj;
+}
+
+export default function config() {
+  ensureConfigExists();
+  const filedata = fs.readFileSync(configPath, 'utf8');
+  return processColorObject(YAML.parse(filedata));
+}

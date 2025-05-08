@@ -65,7 +65,7 @@ export default function App(_: {}) {
     }
 
     useInput((input, key) => {
-      var change_YPointer = key.shift ? config.shift_strength : 1;
+      var change_YPointer = key.shift ? config().shift_strength : 1;
       var _input = mode === Modes.INPUT;
       var not_input = mode !== Modes.INPUT;
       key_switcher({
