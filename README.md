@@ -20,18 +20,40 @@ Available methods:
 ### `npm`
 
 ```bash
-npm install -g qweditor
+npm i -g qweditor
+```
+
+Or use those commands to locally build and install the latest development version (requires `sudo`):
+```bash
+git clone https://github.com/bleudev/qw.git
+cd qw
+npm i
+npm run build
+sudo npm i -g
+```
+
+You can also use this one-liner (requires `sudo`):
+```bash
+git clone https://github.com/bleudev/qw.git && cd qw && npm i && npm run build && sudo npm i -g
 ```
 
 ### `AUR`
 
-> [!CAUTION]
-> You can only install unstable developerment version. If you want to install stable version use `npm` method or wait for stable `AUR` release (coming in 0.2).
+On Arch-based systems an [AUR package](https://aur.archlinux.org/packages/qw-git),
+but be aware that this package is unofficial and might break! (use `sudo pacman -R qw` to uninstall it before
+installing the npm version)
 
+install with `yay`:
 ```bash
 yay -S qw-git
 ```
 
+or you can install without `yay`:
+```bash
+git clone https://aur.archlinux.org/qw-git.git && cd qw-git && makepkg -si
+```
+
 ## Configure
 
-Edit `~/.config/qw/config.yaml` to configure `qw`. If you haven't one, just run `qw` once. `config.yaml` will create automatically with default values.
+Edit `~/.config/qw/config.yaml` to configure `qw`. If you haven't one, just run `qw` once.
+`config.yaml` will create automatically with default values.
