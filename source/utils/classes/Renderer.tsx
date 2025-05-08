@@ -3,6 +3,7 @@ import { Box, Text } from 'ink';
 import TextInput from 'ink-text-input';
 import config from '../config.js';
 import { Modes } from '../annotations.js';
+import GradientText from './GradientText.js';
 
 type RendererProps = {
   height: number;
@@ -41,10 +42,11 @@ export default class Renderer extends React.Component {
     const lineContent = lines[i-1] || '';
     const gap = Array(max_num_digits - this.num_digits(i) + 2).join(' ')
 
-    if (isActive) {
+    if (isActive)
       return (
         <Box key={i}>
-          <Text color={config().colors.editor.row_num.active.fg}>{`> ${i}${gap}`}</Text>
+          <GradientText data={config().colors.editor.row_num.active}>{`> ${i}`}</GradientText>
+          <Text>{gap}</Text>
           <TextInput
             value={lineContent}
             onChange={(v) => {
@@ -66,12 +68,16 @@ export default class Renderer extends React.Component {
           />
         </Box>
       );
-    }
 
     return (
-      <Text key={i} color={config().colors.editor.row_num.inactive.fg}>
-        {`  ${i}${gap}${lineContent}`}
-      </Text>
+      <Box key={i}>
+        <GradientText data={config().colors.editor.row_num.inactive}>
+          {`  ${i}`}
+        </GradientText>
+        <Text>
+          {`${gap}${lineContent}`}
+        </Text>
+      </Box>
     );
   }
 
@@ -97,7 +103,12 @@ export default class Renderer extends React.Component {
 
     // Добавляем тильды для пустых строк в конце
     while (rows.length < cliHeight) {
-      rows.push(<Text key={`empty-${rows.length}`}>~</Text>);
+      rows.push(
+        <Box key={`empty-${rows.length}`}>
+          <Text>  </Text>
+          <GradientText data={config().colors.editor.row_num.empty}>~</GradientText>
+        </Box>
+      );
     }
 
     return rows;
