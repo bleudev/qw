@@ -17,7 +17,7 @@ const default_config = {
         qGrad: ["#00ff00", "#004000"],
         wGrad: ["#0000ff", "#000060"],
         verGrad: ["#aaaaaa", "#555555"],
-        descGrad: ["#ff0000", "#400000"]
+        descGrad: ["#ff0000", "#800000", "#ff0000"]
       },
       bottom: {
         quit: {
