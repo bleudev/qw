@@ -1,6 +1,6 @@
 {
 	"name": "qweditor",
-	"version": "0.2",
+	"version": "0.2.0",
 	"description": "Vim-like terminal text editor",
 	"keywords": [
 		"cli",
